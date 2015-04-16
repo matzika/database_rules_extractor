@@ -55,6 +55,7 @@ public class CSVDataHandler {
 	public void readFile(String filename) throws CDataGridException, IOException {
 		CSVReader reader = new CSVReader(new FileReader(filename));
 		String[] nextLine;
+		String[] headers = reader.readNext();
 		while ((nextLine = reader.readNext()) != null) {
 			Accident a = new Accident(nextLine);
 			addRow(a);
