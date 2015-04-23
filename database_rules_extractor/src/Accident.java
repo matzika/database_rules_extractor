@@ -2,6 +2,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Locale;
 
 
@@ -19,6 +20,8 @@ public class Accident {
 	private int moto_killed;
 	private String[] contributing_factors = new String[]{"", "", "", "", ""};
 	private String[] vehicle_types  = new String[]{"", "", "", "", ""};
+	private HashSet factors = new HashSet();
+	private HashSet vehicles = new HashSet();
 	
 	public Accident (String[] s){
 		setDate(s[0], s[1]);
@@ -46,12 +49,24 @@ public class Accident {
 		}
 	}
 	
+	public Date getDate(){
+		return this.date;
+	}
+	
 	public void setBorough(String s){
 		this.borough = s;
 	}
 	
+	public String getBorough(){
+		return this.borough;
+	}
+	
 	public void setZipcode(String s){
 		this.zipcode = s;
+	}
+	
+	public String getZipcode(){
+		return this.zipcode;
 	}
 	
 	public void setPersonsInjured(String s){
@@ -59,9 +74,17 @@ public class Accident {
 		this.persons_injured = i;
 	}
 	
+	public int getPersonsInjured(){
+		return this.persons_injured;
+	}
+	
 	public void setPersonsKilled(String s){
 		int i = Integer.parseInt(s);
 		this.persons_killed = i;
+	}
+	
+	public int getPersonsKilled(){
+		return this.persons_killed;
 	}
 	
 	public void setPedestriansInjured(String s){
@@ -69,9 +92,17 @@ public class Accident {
 		this.peds_injured = i;
 	}
 	
+	public int getPedestriansInjured(){
+		return this.peds_injured;
+	}
+	
 	public void setPedestriansKilled(String s){
 		int i = Integer.parseInt(s);
 		this.peds_killed = i;
+	}
+	
+	public int getPedestriansKilled(){
+		return this.peds_killed;
 	}
 	
 	public void setCyclistsInjured(String s){
@@ -79,9 +110,17 @@ public class Accident {
 		this.cyc_injured = i;
 	}
 	
+	public int getCyclistsInjured(){
+		return this.cyc_injured;
+	}
+	
 	public void setCyclistsKilled(String s){
 		int i = Integer.parseInt(s);
 		this.cyc_killed = i;
+	}
+	
+	public int getCyclistsKilled(){
+		return this.cyc_killed;
 	}
 	
 	public void setMotoristsInjured(String s){
@@ -89,25 +128,39 @@ public class Accident {
 		this.moto_injured = i;
 	}
 	
+	public int getMotoristsInjured(){
+		return this.moto_injured;
+	}
+	
 	public void setMotoristsKilled(String s){
 		int i = Integer.parseInt(s);
 		this.moto_killed = i;
 	}
 
-	public void setFactors(String a, String b, String c, String d, String e){
-		if(!a.isEmpty()) contributing_factors[0] = a;
-		if(!b.isEmpty()) contributing_factors[1] = b;
-		if(!c.isEmpty()) contributing_factors[2] = c;
-		if(!d.isEmpty()) contributing_factors[3] = d;
-		if(!e.isEmpty()) contributing_factors[4] = e;
+	public int getMotoristsKilled(){
+		return this.moto_killed;
 	}
 	
+	public void setFactors(String a, String b, String c, String d, String e){
+		if(!a.isEmpty()) factors.add(a);
+		if(!b.isEmpty()) factors.add(b);
+		if(!c.isEmpty()) factors.add(c);
+		if(!d.isEmpty()) factors.add(d);
+		if(!e.isEmpty()) factors.add(e);
+	}
+	
+	public HashSet getFactors(){
+		return this.factors;
+	}
 	public void setVehicles(String a, String b, String c, String d, String e){
-		if(!a.isEmpty()) vehicle_types[0] = a;
-		if(!b.isEmpty()) vehicle_types[1] = b;
-		if(!c.isEmpty()) vehicle_types[2] = c;
-		if(!d.isEmpty()) vehicle_types[3] = d;
-		if(!e.isEmpty()) vehicle_types[4] = e;
+		if(!a.isEmpty()) vehicles.add(a);
+		if(!b.isEmpty()) vehicles.add(b);
+		if(!c.isEmpty()) vehicles.add(c);
+		if(!d.isEmpty()) vehicles.add(d);
+		if(!e.isEmpty()) vehicles.add(e);
+	}
+	public HashSet getVehicles(){
+		return this.vehicles;
 	}
 	
 	public Object[] toRow(){
